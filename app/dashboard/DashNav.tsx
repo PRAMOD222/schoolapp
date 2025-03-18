@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { RiAdvertisementFill } from "react-icons/ri";
 import { RxDashboard } from "react-icons/rx";
 
 const DashNav: React.FC = () => {

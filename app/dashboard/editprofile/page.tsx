@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useCallback, useState, useEffect, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 
 import { Button } from "@/components/ui/button";
@@ -48,37 +48,12 @@ const CreateSchoolProfile = () => {
     const [token, setToken] = useState<string | null>(null);
     const [isDomainAvailable, setIsDomainAvailable] = useState<boolean>(false);
 
-    const fetchSchoolProfile = async () => {
-        try {
-            const response = await axios.get(`${baseApi}/profile/get-profile`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            const data = response.data;
 
-            if (data) {
-                console.log("School profile data:", data);
-
-                setSchool(data);
-                setLogo(data.logo);
-                debouncedCheckSubdomain(data.subDomain);
-            }
-            console.log("School profile data:", data);
-        } catch (error) {
-            console.error("Error fetching school profile:", error);
-        }
-    };
 
     useEffect(() => {
         setToken(localStorage.getItem("token"));
     }, []);
 
-    useEffect(() => {
-        if (token) {
-            fetchSchoolProfile();
-        }
-    }, [token]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -93,7 +68,7 @@ const CreateSchoolProfile = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-    
+
         const formData = new FormData();
         formData.append("subDomain", school.subDomain);
         formData.append("name", school.name);
@@ -106,7 +81,7 @@ const CreateSchoolProfile = () => {
         formData.append("vision", school.vision);
         formData.append("mission", school.mission);
         if (school.logo) formData.append("logo", school.logo);
-    
+
         try {
             if (school._id) {
                 // **If `_id` exists, update profile**
@@ -127,14 +102,14 @@ const CreateSchoolProfile = () => {
                 });
                 toast.success("School Profile Created!");
             }
-    
+
             // Re-fetch updated profile after submission
             fetchSchoolProfile();
         } catch (error) {
-            toast.error("Error saving profile");
+            console.error("Error saving profile", error);
         }
     };
-    
+
 
     const handleDomainChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -170,9 +145,36 @@ const CreateSchoolProfile = () => {
                 setIsDomainAvailable(false);
             }
         } catch (error) {
-            toast.error("Error checking subdomain availability");
+            console.error("Error checking subdomain availability:", error);
         }
     }, 500);
+
+    const fetchSchoolProfile = useCallback(async () => {
+        try {
+            const response = await axios.get(`${baseApi}/profile/get-profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const data = response.data;
+
+            if (data) {
+                console.log("School profile data:", data);
+
+                setSchool(data);
+                setLogo(data.logo);
+                debouncedCheckSubdomain(data.subDomain);
+            }
+        } catch (error) {
+            console.error("Error fetching school profile:", error);
+        }
+    }, [token, debouncedCheckSubdomain]); // Dependencies for useCallback
+
+    useEffect(() => {
+        if (token) {
+            fetchSchoolProfile();
+        }
+    }, [token, fetchSchoolProfile]); // Dependencies for useEffect
 
     return (
         <div className="container mx-auto p-4">
@@ -182,7 +184,7 @@ const CreateSchoolProfile = () => {
                 <div className="flex gap-4">
                     <Label className="flex flex-col items-start">
                         Domain
-                        <Input type="text" name="subDomain" value={school.subDomain} onChange={handleDomainChange} placeholder="Subdomain"  />
+                        <Input type="text" name="subDomain" value={school.subDomain} onChange={handleDomainChange} placeholder="Subdomain" />
 
                         {school.subDomain.length >= 3 && (
                             isDomainAvailable ? (

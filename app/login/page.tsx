@@ -19,7 +19,11 @@ const LoginPage: React.FC = () => {
 
     useEffect(() => {
         if (user) {
-            user.isAdmin ? router.push('/admin') : router.push('/dashboard');
+            if (user.isAdmin) {
+                router.push('/admin');
+            } else {
+                router.push('/dashboard');
+            }
         }
     }, [user, router]);
 

@@ -4,7 +4,6 @@ export function middleware(req: NextRequest) {
     const host = req.headers.get("host") || "";
     const url = req.nextUrl.clone();
 
-    console.log("Middleware triggered for:", host, "Path:", url.pathname);
 
     // Extract subdomain (e.g., greenwoodschool from greenwoodschool.localhost)
     const subdomain = host.split(".")[0];
