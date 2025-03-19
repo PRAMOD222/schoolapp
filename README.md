@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Frontend for School App
 
-## Getting Started
+## 🚀 Project Overview
+This is the frontend for the School App, built using **Next.js 15**, **Tailwind CSS** It interacts with the backend hosted on localhost 3001.
 
-First, run the development server:
+## 📌 Features
+- Dynamic pages with **App Router**
+- API integration with Express backend
+- Authentication and user management
+- Responsive UI with **Tailwind CSS** and **Shadcn Ui**
+- Optimized performance with lazy loading & SSR
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠️ Tech Stack
+- **Next.js 15** (App Router)
+- **Tailwind CSS**
+- **Redux**
+- **Shadcn Ui**
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/PRAMOD222/schoolapp.git
+cd schoolapp
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
+```sh
+npm install  
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3️⃣ Environment Variables
+Create a `.env.local` file in the root directory and add:
+```env
+NEXT_PUBLIC_API_BASE_URL = http://localhost:3000/api
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4️⃣ Run the Development Server
+```sh
+npm run dev  
+```
+The app will be available at `http://localhost:3000`.
 
-## Learn More
+## 🚀 Deployment
+**For Production Build:**
+```sh
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## School Profile
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+school profiles will be visible at `http://<subdomain>.loclahost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For More Projects and information visit `https://pramodkesarkar.tech`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

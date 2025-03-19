@@ -3,9 +3,9 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div>
+        <div className=''>
             <footer className="text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+                <div className="mx-6 md:mx-32 xl:mx-44 py-24  flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                     <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
                         <Link href="/">
                             <h2 className="text-3xl font-bold text-[#763f98]">LOGO</h2>
@@ -83,8 +83,8 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-100">
-                    <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+                <div className="bg-gray-100 px-6 md:px-32 xl:px-44">
+                    <div className="container mx-auto py-4  flex flex-wrap flex-col sm:flex-row">
                         <Link target="_blank" href="/https://pramodkesarkar.tech" className="text-gray-500 text-sm text-center sm:text-left">© 2025 Pramod Kesarkar
                             {/* <Link   className="text-gray-600 ml-1" ></Link> */}
                         </Link>
