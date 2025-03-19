@@ -4,7 +4,12 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "localhost",
-        port: "3001", // Specify the port where your images are hosted
+        port: "3000", 
+        pathname: "/api/**",
+      },
+      {
+        protocol: "https",
+        hostname: "school.pramodkesarkar.tech",
         pathname: "/api/**",
       },
     ],
