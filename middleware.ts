@@ -9,7 +9,7 @@ export function middleware(req: NextRequest) {
     const subdomain = host.split(".")[0];
 
     // Ignore requests to the main domain (localhost:3000, your main site, etc.)
-    if (host === "localhost:3000" || host === "localhost") {
+    if (host === "localhost:3001" || host === "localhost" || host === "schoolapp.pramodkesarkar.tech") {
         return NextResponse.next();
     }
 
